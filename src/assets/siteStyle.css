@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'Helvetica Neue';
+    src: 
+        url('./fonts/HelveticaNeueCyr-Light.woff2') format('woff2'),
+        url('./fonts/HelveticaNeueCyr-Light.woff') format('woff'),
+        url('./fonts/HelveticaNeueCyr-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+  }
+  body{
+      font-family: 'Helvetica Neue', sans-serif !important;
+      font-weight: 400;
+  }
