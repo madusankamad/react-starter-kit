@@ -1,6 +1,13 @@
-import React, { ReactElement, createContext, useContext, useState } from 'react';
+import React, { ReactElement, createContext, useContext, useState, useEffect } from 'react';
 import { ProviderProps } from './commonTypes';
 import { ThemeProvider } from '@mui/material/styles';
+
+import MuiContainer from '@mui/material/Container';
+import Switch from '@mui/material/Switch';
+import FormControl from '@mui/material/FormControl';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import CssBaseline from '@mui/material/CssBaseline';
+
 import { darkTheme, lightTheme, THEME_TYPES } from '../theme';
 import { darkColors, lightColors } from '../theme/colors';
 
@@ -41,3 +48,50 @@ export const ThemeContextProvider = ({ children }: ProviderProps): ReactElement 
 };
 
 export const useThemeContext = () => useContext(ThemeContext);
+
+// ----------------- Supportive Component for storybook
+const ThemeToggle = ({ children }: ProviderProps): ReactElement => {
+  const { activeTheme, setTheme } = useThemeContext();
+  const [checked, setChecked] = React.useState(true);
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setChecked(event.target.checked);
+  };
+  useEffect(() => {
+    if (checked) {
+      setTheme('dark');
+    } else {
+      setTheme('light');
+    }
+  }, [checked]);
+  return (
+    <>
+      <CssBaseline />
+      <MuiContainer maxWidth={'lg'}>
+        <FormControl component="fieldset" variant="standard">
+          <FormControlLabel
+            control={
+              <Switch
+                checked={checked}
+                onChange={handleChange}
+                inputProps={{ 'aria-label': 'controlled' }}
+              />
+            }
+            label={`Turn on ${checked ? 'Light' : 'Dark'} mode`}
+          />
+        </FormControl>
+      </MuiContainer>
+      <MuiContainer maxWidth={'lg'} sx={{ marginTop: '70px' }}>
+        <>{children}</>
+      </MuiContainer>
+    </>
+  );
+};
+
+export const ThemeForStorybook = ({ children }: ProviderProps): ReactElement => {
+  return (
+    <ThemeContextProvider>
+      <ThemeToggle>{children}</ThemeToggle>
+    </ThemeContextProvider>
+  );
+};
