@@ -1,12 +1,9 @@
-import { Button } from './common/button';
 import React from 'react';
-import { useUserContext } from './contexts/userContext';
-import { useThemeContext } from './contexts/themeContext';
-import { Container } from './common/layout';
+import { Container } from 'common/layout';
+import AppRoutes from 'appRoutes';
 
-function App() {
-  const { theme, userId, dispatch } = useUserContext();
-  const { activeTheme, setTheme } = useThemeContext();
+const App = () => {
+  console.log('#APP is Rendering');
   return (
     <Container
       className="App"
@@ -16,30 +13,9 @@ function App() {
         backgroundColor: 'primary.default'
       }}
     >
-      <h1>Logged In User: {userId}</h1>
-      <h1>theme UserStore: {theme}</h1>
-      <Button
-        onClick={() => {
-          dispatch({
-            type: 'SET_USER_ID',
-            data: { userId: `uID${Math.floor(Math.random() * 10)}` }
-          });
-        }}
-      >
-        UPDATE USER ID
-      </Button>
-
-      <h1>theme UserStore: {activeTheme}</h1>
-      <Button
-        variant="contained"
-        onClick={() => {
-          setTheme(activeTheme === 'dark' ? 'light' : 'dark');
-        }}
-      >
-        Toggle Theme
-      </Button>
+      <AppRoutes />
     </Container>
   );
-}
+};
 
 export default App;

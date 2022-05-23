@@ -51,7 +51,7 @@ export const useThemeContext = () => useContext(ThemeContext);
 
 // ----------------- Supportive Component for storybook
 const ThemeToggle = ({ children }: ProviderProps): ReactElement => {
-  const { activeTheme, setTheme } = useThemeContext();
+  const { setTheme } = useThemeContext();
   const [checked, setChecked] = React.useState(true);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
