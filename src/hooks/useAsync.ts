@@ -1,8 +1,8 @@
 const useAsync = (_loading: boolean) => {
   return {
-    loading: '',
+    loading: _loading,
     fetcher: () => {
-      console.log('Featcher');
+      console.log('Fetcher');
     },
     data: {},
     error: {}

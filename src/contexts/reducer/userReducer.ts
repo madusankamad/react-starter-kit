@@ -25,6 +25,6 @@ export const userReducer = (_state: UserIntf, _action: ActionIntf) => {
     case SET_USER_ID:
       return { ..._state, userId: data.userId };
     default:
-      return { ...INITIAL_USER_STATE };
+      return { ..._state };
   }
 };
