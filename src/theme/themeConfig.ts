@@ -25,7 +25,7 @@ export const THEME_LIGHT = {
   palette: {
     type: 'light',
     primary: {
-      main: 'rgba(25, 25, 25, 0.96);',
+      main: 'rgba(25, 25, 25, 0.96)',
       contrastText: '#ffffff'
     },
     secondary: {

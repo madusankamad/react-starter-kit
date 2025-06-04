@@ -21,6 +21,6 @@ export const entitlementReducer = (_state: EntitlementIntf, _action: ActionIntf)
     case RESET_ENTITLEMENTS:
       return { ...INITIAL_ENTITLEMENT_STATE };
     default:
-      return { ..._state, ...INITIAL_ENTITLEMENT_STATE };
+      return { ..._state };
   }
 };
